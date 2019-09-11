@@ -84,7 +84,13 @@ private:
     AP_Int8         _trigger_duration;  // duration in 10ths of a second that the camera shutter is held open
     AP_Int8         _relay_on;          // relay value to trigger camera
     AP_Int16        _servo_on_pwm;      // PWM value to move servo to when shutter is activated
+    AP_Int16        _servo_on_pwm2;      // PWM value to move servo to when shutter is activated
+    AP_Int16        _servo_on_pwm3;      // PWM value to move servo to when shutter is activated
+    AP_Int16        _servo_on_pwm4;      // PWM value to move servo to when shutter is activated
     AP_Int16        _servo_off_pwm;     // PWM value to move servo to when shutter is deactivated
+    AP_Int16        _servo_off_pwm2;     // PWM value to move servo to when shutter is deactivated
+    AP_Int16        _servo_off_pwm3;     // PWM value to move servo to when shutter is deactivated
+    AP_Int16        _servo_off_pwm4;     // PWM value to move servo to when shutter is deactivated
     uint8_t         _trigger_counter;   // count of number of cycles shutter has been held open
     uint8_t         _trigger_counter_cam_function;   // count of number of cycles alternative camera function has been held open
     AP_Int8         _auto_mode_only;    // if 1: trigger by distance only if in AUTO mode.

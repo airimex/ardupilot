@@ -143,6 +143,9 @@ public:
         k_scripting14           = 107,
         k_scripting15           = 108,
         k_scripting16           = 109,
+		k_cam_trigger2          = 110,           ///< camera trigger
+		k_cam_trigger3          = 111,           ///< camera trigger
+		k_cam_trigger4          = 112,           ///< camera trigger
         k_LED_neopixel1         = 120,
         k_LED_neopixel2         = 121,
         k_LED_neopixel3         = 122,

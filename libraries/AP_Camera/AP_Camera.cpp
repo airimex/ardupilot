@@ -106,6 +106,54 @@ const AP_Param::GroupInfo AP_Camera::var_info[] = {
     // @User: Standard
     AP_GROUPINFO("TYPE",  11, AP_Camera, _type, 0),
 
+	// @Param: SERVO_ON2
+	// @DisplayName: Servo ON PWM value
+	// @Description: PWM value in microseconds to move servo to when shutter is activated
+	// @Units: PWM
+	// @Range: 1000 2000
+	// @User: Standard
+	AP_GROUPINFO("SERVO_ON2",    12, AP_Camera, _servo_on_pwm2, AP_CAMERA_SERVO_ON_PWM),
+
+	// @Param: SERVO_ON3
+	// @DisplayName: Servo ON PWM value
+	// @Description: PWM value in microseconds to move servo to when shutter is activated
+	// @Units: PWM
+	// @Range: 1000 2000
+	// @User: Standard
+	AP_GROUPINFO("SERVO_ON3",    13, AP_Camera, _servo_on_pwm3, AP_CAMERA_SERVO_ON_PWM),
+
+	// @Param: SERVO_ON4
+	// @DisplayName: Servo ON PWM value
+	// @Description: PWM value in microseconds to move servo to when shutter is activated
+	// @Units: PWM
+	// @Range: 1000 2000
+	// @User: Standard
+	AP_GROUPINFO("SERVO_ON4",    14, AP_Camera, _servo_on_pwm4, AP_CAMERA_SERVO_ON_PWM),
+
+	// @Param: SERVO_OFF2
+	// @DisplayName: Servo OFF PWM value
+	// @Description: PWM value in microseconds to move servo to when shutter is deactivated
+	// @Units: PWM
+	// @Range: 1000 2000
+	// @User: Standard
+	AP_GROUPINFO("SERVO_OFF2",   15, AP_Camera, _servo_off_pwm2, AP_CAMERA_SERVO_OFF_PWM),
+
+	// @Param: SERVO_OFF3
+	// @DisplayName: Servo OFF PWM value
+	// @Description: PWM value in microseconds to move servo to when shutter is deactivated
+	// @Units: PWM
+	// @Range: 1000 2000
+	// @User: Standard
+	AP_GROUPINFO("SERVO_OFF3",   16, AP_Camera, _servo_off_pwm3, AP_CAMERA_SERVO_OFF_PWM),
+
+	// @Param: SERVO_OFF4
+	// @DisplayName: Servo OFF PWM value
+	// @Description: PWM value in microseconds to move servo to when shutter is deactivated
+	// @Units: PWM
+	// @Range: 1000 2000
+	// @User: Standard
+	AP_GROUPINFO("SERVO_OFF4",   17, AP_Camera, _servo_off_pwm4, AP_CAMERA_SERVO_OFF_PWM),
+
     AP_GROUPEND
 };
 
@@ -116,6 +164,9 @@ void
 AP_Camera::servo_pic()
 {
     SRV_Channels::set_output_pwm(SRV_Channel::k_cam_trigger, _servo_on_pwm);
+    SRV_Channels::set_output_pwm(SRV_Channel::k_cam_trigger2, _servo_on_pwm2);
+    SRV_Channels::set_output_pwm(SRV_Channel::k_cam_trigger3, _servo_on_pwm3);
+    SRV_Channels::set_output_pwm(SRV_Channel::k_cam_trigger4, _servo_on_pwm4);
 
     // leave a message that it should be active for this many loops (assumes 50hz loops)
     _trigger_counter = constrain_int16(_trigger_duration*5,0,255);
@@ -169,6 +220,9 @@ AP_Camera::trigger_pic_cleanup()
         switch (_trigger_type) {
         case AP_CAMERA_TRIGGER_TYPE_SERVO:
             SRV_Channels::set_output_pwm(SRV_Channel::k_cam_trigger, _servo_off_pwm);
+            SRV_Channels::set_output_pwm(SRV_Channel::k_cam_trigger2, _servo_off_pwm2);
+            SRV_Channels::set_output_pwm(SRV_Channel::k_cam_trigger3, _servo_off_pwm3);
+            SRV_Channels::set_output_pwm(SRV_Channel::k_cam_trigger4, _servo_off_pwm4);
             break;
         case AP_CAMERA_TRIGGER_TYPE_RELAY: {
             AP_Relay *_apm_relay = AP::relay();
